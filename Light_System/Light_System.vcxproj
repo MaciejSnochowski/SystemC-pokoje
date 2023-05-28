@@ -134,15 +134,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Light_System.cpp" />
-    <ClCompile Include="writer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hex_hendler.h" />
-    <ClInclude Include="inputs.h" />
-    <ClInclude Include="keyboard.h" />
+    <ClInclude Include="Inputs.hpp" />
+    <ClInclude Include="Keyboard.hpp" />
     <ClInclude Include="led_hendler.h" />
-    <ClInclude Include="reader.h" />
-    <ClInclude Include="slider_hendler.h" />
+    <ClInclude Include="slider_hendler.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,4 @@
-void led_hendler(){
+/*void led_hendler(){
 int leds_suma = 0
 int s1_counter = 0;
 int s2_counter = 0;
@@ -23,3 +23,5 @@ if (s5_counter > 0) {
 }
 
 			}
+
+*/

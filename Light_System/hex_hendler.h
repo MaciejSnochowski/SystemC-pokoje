@@ -1,4 +1,4 @@
-#include<iostream>
+/*#include<iostream>
 
 #define  SEGA 0x00001
 #define  SEGB 0x00002
@@ -31,7 +31,7 @@ long long SEGMENT6 = HEX0;
 
 	void hex_hendler(int  stan_new, int vertical_direction, int horizontal_direction) {
 		/* int  stan_new = 0;
-		int stan_old = -1;*/
+		int stan_old = -1;
 		int vertical_direction = 0;
 		int horizontal_direction = 0;
 		//int leds_suma = 0;
@@ -254,3 +254,4 @@ long long SEGMENT6 = HEX0;
 			SEGMENT2 = HEXE;
 		}
 	}
+	*/

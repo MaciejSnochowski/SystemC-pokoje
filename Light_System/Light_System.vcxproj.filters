@@ -13,20 +13,14 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Pliki zasobów\OLD files">
-      <UniqueIdentifier>{4db1703f-a7ee-48ed-a24c-fcd18c3b96e5}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Light_System.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="writer.h">
-      <Filter>Pliki zasobów\OLD files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="slider_hendler.h">
+    <ClInclude Include="slider_hendler.hpp">
       <Filter>Pliki zasobów</Filter>
     </ClInclude>
     <ClInclude Include="hex_hendler.h">
@@ -35,14 +29,11 @@
     <ClInclude Include="led_hendler.h">
       <Filter>Pliki zasobów</Filter>
     </ClInclude>
-    <ClInclude Include="reader.h">
-      <Filter>Pliki zasobów\OLD files</Filter>
+    <ClInclude Include="Inputs.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="keyboard.h">
-      <Filter>Pliki zasobów\OLD files</Filter>
-    </ClInclude>
-    <ClInclude Include="inputs.h">
-      <Filter>Pliki zasobów\OLD files</Filter>
+    <ClInclude Include="Keyboard.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
