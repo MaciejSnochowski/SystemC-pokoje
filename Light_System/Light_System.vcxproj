@@ -138,8 +138,9 @@
   <ItemGroup>
     <ClInclude Include="hex_hendler.h" />
     <ClInclude Include="Inputs.hpp" />
-    <ClInclude Include="Keyboard.hpp" />
     <ClInclude Include="led_hendler.h" />
+    <ClInclude Include="Outputs.hpp" />
+    <ClInclude Include="Package.hpp" />
     <ClInclude Include="slider_hendler.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

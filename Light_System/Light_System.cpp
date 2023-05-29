@@ -1,6 +1,7 @@
 ﻿#include <systemc.h>
 #include"Inputs.hpp"
-
+#include"Outputs.hpp"
+#include"Package.hpp"
 SC_MODULE(Module1) {
 	sc_signal<int> s;
 	sc_port<sc_signal_out_if<int> > p;
@@ -62,16 +63,13 @@ SC_MODULE(Module2) {
 	}
 };
 	int sc_main(int, char* []) {
-		//Module1 module1("mod1");
-		////Module2 module2("mod2");
-		//sc_signal<int> s;
-		//module1.p(s);
-		//module2.p(s);
-		//sc_start(4, SC_SEC);
-		Inputs inputs("input");
-		
+		sc_fifo<Package> fifo(4);
 		sc_signal<int> s;
-		//inputs.p(s);
+
+		Inputs inputs("input");
+		Outputs outputs("outputs");
+		inputs.fifo_out(fifo);
+		outputs.fifo_in(fifo);
 		
 		sc_start(15, SC_SEC);
 	
