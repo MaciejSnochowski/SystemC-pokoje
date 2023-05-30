@@ -52,7 +52,7 @@ void Outputs::get() {
 				if (stan_new == 0 && vertical_direction == 0) {
 					std::cout << "Jestes w pokoju S5" << std::endl;
 					s5_counter += 1;
-					wait(1, SC_SEC);
+					//wait(1, SC_SEC);
 				}
 				//wyjscie z S5 do gory
 				else if (stan_new == 0 && vertical_direction == 1 && s5_counter > 0) {

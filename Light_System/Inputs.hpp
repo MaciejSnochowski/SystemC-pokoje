@@ -128,7 +128,7 @@ void Inputs::keyboard() {
 			Sleep(400);
 
 		}
-		if (GetKeyState(56) & 0x8000)//CD8
+		if (GetKeyState(56) & 0x8000)//CD2
 		{
 			var = 2;
 			std::cout << "[8] clicked: " << var << std::endl;
@@ -137,7 +137,7 @@ void Inputs::keyboard() {
 			Sleep(400);
 
 		}
-		if (GetKeyState(57) & 0x8000)//CD8
+		if (GetKeyState(57) & 0x8000)//CD1
 		{
 			var = 1;
 			std::cout << "[9] clicked: " << var << std::endl;
@@ -168,7 +168,7 @@ void Inputs::slider_handler() {
 	{
 		Package p_fifo;
 
-		sc_uint<10> inner_slider=0000000000;
+		//sc_uint<10> inner_slider=0000000000;
 		slider = s.read();
 	
 		//	std::cout << "[RECIVED]>> " << output << std::endl;
@@ -205,7 +205,7 @@ void Inputs::slider_handler() {
 		
 		}
 
-		if (slider & (1<<8)) {
+		if (slider & (1<<8)) { //CD1
 			
 			if (isOn[1] == false) {
 				isOn[1] = true;
@@ -218,7 +218,7 @@ void Inputs::slider_handler() {
 
 			std::cout << " [Correct] " << output << " vertical: " << vertical_direction << " hor: " << horizontal_direction << " stan " << stan_new << std::endl;
 
-			wait(1, SC_SEC);
+			//wait(1, SC_SEC);
 		}
 		else if (slider & (1 << 7)) {
 			if (isOn[2] == false) {

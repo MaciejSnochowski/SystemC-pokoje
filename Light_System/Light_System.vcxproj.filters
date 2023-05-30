@@ -20,15 +20,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="slider_hendler.hpp">
-      <Filter>Pliki zasobów</Filter>
-    </ClInclude>
-    <ClInclude Include="hex_hendler.h">
-      <Filter>Pliki zasobów</Filter>
-    </ClInclude>
-    <ClInclude Include="led_hendler.h">
-      <Filter>Pliki zasobów</Filter>
-    </ClInclude>
     <ClInclude Include="Inputs.hpp">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>

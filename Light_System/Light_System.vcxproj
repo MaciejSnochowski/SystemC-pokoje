@@ -136,12 +136,9 @@
     <ClCompile Include="Light_System.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="hex_hendler.h" />
     <ClInclude Include="Inputs.hpp" />
-    <ClInclude Include="led_hendler.h" />
     <ClInclude Include="Outputs.hpp" />
     <ClInclude Include="Package.hpp" />
-    <ClInclude Include="slider_hendler.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
