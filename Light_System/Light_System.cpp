@@ -64,9 +64,10 @@ SC_MODULE(Module2) {
 };
 	int sc_main(int, char* []) {
 		std::cout << "Q: change direction \n";
+		int k =9;
 		for (int i =1;  i < 10;  i++)
 		{
-			std::cout<< i << ": CD-" << i<<"\n";
+			std::cout<< i << ": CD-" << k--<<"\n";
 		}
 		sc_fifo<Package> fifo(4);
 		sc_signal<int> s;

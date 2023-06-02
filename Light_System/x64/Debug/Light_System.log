@@ -1,3 +1,2 @@
 ﻿  Light_System.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1096,5): error MSB6006: Polecenie „link.exe” zakończone przez kod 1168.
-LINK : fatal error LNK1168: nie można otworzyć pliku F:\SystemC\Light_system\Light_System\x64\Debug\Light_System.exe do zapisu
+  Light_System.vcxproj -> F:\SystemC\Light_system\Light_System\x64\Debug\Light_System.exe

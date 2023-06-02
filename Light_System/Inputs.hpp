@@ -8,8 +8,9 @@
 SC_MODULE(Inputs)//SLIDERKI 
 {
 
-	sc_signal<sc_uint<10>> s;
+	sc_buffer<sc_uint<10>> s;
 	sc_fifo_out<Package> fifo_out;
+	sc_event event;
 	//sc_port<sc_signal_out_if<int> > p;
 
 
@@ -39,6 +40,9 @@ SC_MODULE(Inputs)//SLIDERKI
 };
 
 void Inputs::keyboard() {
+	wait(SC_ZERO_TIME);
+
+
 	bool isOn[10];
 	for (int i = 0; i < 10; i++) {
 		isOn[i] = false;
@@ -46,7 +50,15 @@ void Inputs::keyboard() {
 	 sc_uint<10> var=0000000000;
 	while (1)
 	{
-		
+		if (GetKeyState('T') & 0x8000) {
+			std::cout << "[Troubleshoot key]\n";
+			var = 1024;
+			s.write(var);
+			wait(1, SC_SEC);
+			Sleep(400);
+
+
+		}
 		if (GetKeyState('Q') & 0x8000) //DIRECTION 
 		{
 			if (isOn[0] == false) {
@@ -55,7 +67,7 @@ void Inputs::keyboard() {
 				std::cout << "[DIRECTION] clicked: " << var << std::endl;
 				s.write(var);
 				wait(1, SC_SEC);
-				Sleep(1000);
+				Sleep(400);
 			}
 			else {
 				isOn[0] = false;
@@ -154,22 +166,28 @@ void Inputs::keyboard() {
 	}
 
 void Inputs::slider_handler() { 
+	//wait();
+	std::cout << "================================================================ \n";
 	int stan_old = -1;
 	int stan_new = -1;
 	sc_uint<10>slider = 0; //2^10 =512
 	sc_bv<10> output = 0000000000;
 	//s.read();
 	bool isOn[10]; 
-	for (int i = 0; i < 10; i++)
+	while (true)
+	{
+		for (int i = 0; i < 10; i++)
 	{
 		isOn[i] = false;
 	}
-	while (true)
-	{
+
+		
+
 		Package p_fifo;
 
 		//sc_uint<10> inner_slider=0000000000;
 		slider = s.read();
+		//notify? event  LUB kolejka zamiast sygna³u? 
 	
 		//	std::cout << "[RECIVED]>> " << output << std::endl;
 
@@ -178,15 +196,18 @@ void Inputs::slider_handler() {
 		int vertical_direction = 0;// dó³ 0 góra 1
 		int horizontal_direction = 0;// lewo 0 prawo 1
 		/*int leds_suma = 0;*/
-
+	
 		int s1_counter = 0;
 		int s2_counter = 0;
 		int s3_counter = 0;
 		int s4_counter = 0;
 		int s5_counter = 0;
 
-		
+		if (slider == 1024) {
+			stan_new = 100;
+		}
 		if(slider &(1<<9)){
+			std::cout << "Klikniêto Q!\n";
 			if (isOn[0] == false) {
 				isOn[0] = true;
 				vertical_direction = 1;
@@ -201,7 +222,7 @@ void Inputs::slider_handler() {
 			}
 			output = slider;
 			std::cout << " [Correct] " << output << " vertical: " << vertical_direction << " hor: " << horizontal_direction << " stan " << stan_new << std::endl;
-			wait(1, SC_SEC);
+			//wait(1, SC_SEC);
 		
 		}
 
@@ -256,6 +277,7 @@ void Inputs::slider_handler() {
 			}
 			else {
 				isOn[4] = false;
+
 			}
 			output = slider;
 			std::cout << " [Correct] " << output << " vertical: " << vertical_direction << " hor: " << horizontal_direction << " stan " << stan_new << std::endl;
@@ -278,7 +300,7 @@ void Inputs::slider_handler() {
 			wait(1, SC_SEC);
 		}
 		else if (slider & (1 << 3)) {
-			if (isOn[6] == false) {
+			if (isOn[6] == false) {//6
 				isOn[6] = true;
 				stan_new = 3;
 			}
@@ -291,7 +313,7 @@ void Inputs::slider_handler() {
 			
 			wait(1, SC_SEC);
 		}
-		else if (slider & (1 << 2)) {
+		else if (slider & (1 << 2)) {//7
 			if (isOn[7] == false) {
 				isOn[7] = true;
 				stan_new = 2;
@@ -305,7 +327,7 @@ void Inputs::slider_handler() {
 			
 			wait(1, SC_SEC);
 		}
-		else if (slider & (1 << 1)) {
+		else if (slider & (1 << 1)) {//8
 			if (isOn[8] == false) {
 				isOn[8] = true;
 				stan_new = 1;
@@ -315,41 +337,44 @@ void Inputs::slider_handler() {
 			}
 			output = slider;
 			std::cout << " [Correct] " << output << " vertical: " << vertical_direction << " hor: " << horizontal_direction << " stan " << stan_new << std::endl;
-			wait(1, SC_SEC);
+			Sleep(1000);
 
 			
 			
 		}
-		else if (slider & (1 << 0)) {
+		else if (slider & (1 << 0)) {//9
 			if (isOn[9] == false) {
 				isOn[9] = true;
 				stan_new = 0;
 			}
 			else {
 				isOn[9] = false;
+				stan_new = 0;
+
 			}
 			output = slider;
-			std::cout << " [Correct] " << output << " vertical: " << vertical_direction << " hor: " << horizontal_direction << " stan " << stan_new << std::endl;
+			std::cout << "isOn[9] " <<isOn[9]<< " [Correct] " << output << " vertical: " << vertical_direction << " hor: " << horizontal_direction << " stan " << stan_new << std::endl;
 			
 			
+		
 		}
-
+	
 		p_fifo.vertical_direction = vertical_direction;
 		p_fifo.horizontal_direction = horizontal_direction;
 		p_fifo.stan_new= stan_new;
 		//p_fifo.display();
-	
+		//if (stan_new != -1) {
 		fifo_out.write(p_fifo);
+	
+		std::cout << "sneded \n";
+
+		
+
+	//}
+	
 
 
-		/*std::cout << "stan_new: " << stan_new
-			<< " vertical, horizontal =>"
-			<< vertical_direction << " " << horizontal_direction << std::endl;
-		wait(1, SC_SEC);*/
-
-
-		//int stan_new = 0;
-		//int stan_old = -1;
+		
 		/*
 		if (stan_new != stan_old) {
 			stan_old = stan_new;

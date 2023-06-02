@@ -35,24 +35,34 @@ std::ostream& operator << (std::ostream& os, const Package& I) {
 void Outputs::get() {
 	while (true) {
 		fifo_in.read(rec_fifo);
+		std::cout << " \t \t recived \n";
 		rec_fifo.display();
+
 		stan_new = rec_fifo.stan_new;
 		vertical_direction = rec_fifo.vertical_direction;
 		horizontal_direction = rec_fifo.horizontal_direction;
+		//wait(1, SC_SEC); 
+		if (stan_new == 100) {
+			cout << "true";
+		}
 
 
 
 
 
 		if (stan_new != stan_old) {
-			stan_old = stan_new;
+			std::cout << " in \n";
+			/*	stan_old = stan_new;*/
 			if (stan_new > -1) {
+				std::cout << " in_v2\n";
+
 				//CD1
 				// wejscie do S5
 				if (stan_new == 0 && vertical_direction == 0) {
 					std::cout << "Jestes w pokoju S5" << std::endl;
 					s5_counter += 1;
-					//wait(1, SC_SEC);
+					wait(1, SC_SEC);
+
 				}
 				//wyjscie z S5 do gory
 				else if (stan_new == 0 && vertical_direction == 1 && s5_counter > 0) {
@@ -198,6 +208,7 @@ void Outputs::get() {
 					<< s1_counter << "," <<
 					s2_counter << "," << s3_counter <<
 					"," << s4_counter << "," << s5_counter << std::endl;
+				
 
 			}
 
